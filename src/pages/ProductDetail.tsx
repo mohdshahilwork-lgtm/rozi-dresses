@@ -22,12 +22,21 @@ export default function ProductDetail() {
     window.scrollTo(0, 0);
   }, [id]);
 
+  if (isLoading) {
+    return (
+      <div className="h-screen flex flex-col items-center justify-center space-y-4">
+        <div className="w-10 h-10 border-4 border-brand-accent border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-gray-400 italic font-serif">Loading your next favorite dress...</p>
+      </div>
+    );
+  }
+
   if (!product) {
     return (
       <div className="h-screen flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-3xl mb-4">Product Not Found</h2>
-          <Link to="/shop" className="text-brand-accent border-b border-brand-accent">Back to Shop</Link>
+          <h2 className="text-3xl mb-4 font-serif">Product Not Found</h2>
+          <Link to="/shop" className="text-brand-accent border-b border-brand-accent uppercase tracking-widest text-xs font-bold">Back to Shop</Link>
         </div>
       </div>
     );

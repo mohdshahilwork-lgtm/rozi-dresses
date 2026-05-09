@@ -29,7 +29,7 @@ export default function Shop() {
     setSearchParams(searchParams);
   };
   const [sortBy, setSortBy] = useState('latest');
-  const [priceRange, setPriceRange] = useState(5000);
+  const [priceRange, setPriceRange] = useState(10000);
   const [showFilters, setShowFilters] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -38,12 +38,14 @@ export default function Shop() {
     
     // Search Filter
     if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      res = res.filter(p => 
-        p.name.toLowerCase().includes(query) || 
-        p.description.toLowerCase().includes(query) ||
-        p.category.toLowerCase().includes(query)
-      );
+      const terms = searchQuery.toLowerCase().split(' ').filter(term => term.trim() !== '');
+      res = res.filter(p => {
+        return terms.every(term => 
+          p.name.toLowerCase().includes(term) || 
+          p.description.toLowerCase().includes(term) ||
+          p.category.toLowerCase().includes(term)
+        );
+      });
     }
 
     // Category Filter
@@ -136,7 +138,7 @@ export default function Shop() {
               <input 
                 type="range" 
                 min="500" 
-                max="5000" 
+                max="10000" 
                 step="100" 
                 value={priceRange}
                 onChange={(e) => setPriceRange(parseInt(e.target.value))}
@@ -166,8 +168,23 @@ export default function Shop() {
 
         {/* Product Grid */}
         <div className="flex-1">
-          <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-100">
-            <span className="text-xs text-gray-400 uppercase tracking-widest font-medium">Showing {filteredProducts.length} Results</span>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 pb-4 border-b border-gray-100 gap-4">
+            <div className="space-y-1">
+              <span className="text-xs text-gray-400 uppercase tracking-widest font-medium block">
+                Showing {filteredProducts.length} Results
+              </span>
+              {searchQuery && (
+                <div className="flex items-center space-x-2">
+                  <span className="text-[10px] text-gray-400">Searching for:</span>
+                  <span className="bg-brand-pink/30 text-brand-dark px-2 py-0.5 text-[10px] font-bold rounded-full flex items-center">
+                    "{searchQuery}"
+                    <button onClick={() => setSearchQuery('')} className="ml-1.5 hover:text-brand-accent">
+                      <X size={10} />
+                    </button>
+                  </span>
+                </div>
+              )}
+            </div>
             <div className="hidden lg:flex items-center space-x-1 text-xs text-gray-400">
               <span>View:</span>
               <button className="text-brand-dark px-1">Grid</button>
@@ -175,7 +192,12 @@ export default function Shop() {
             </div>
           </div>
 
-          {filteredProducts.length > 0 ? (
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center py-20 bg-white rounded-sm space-y-4">
+              <div className="w-8 h-8 border-2 border-brand-accent border-t-transparent rounded-full animate-spin"></div>
+              <p className="text-gray-400 italic">Exploring our collection...</p>
+            </div>
+          ) : filteredProducts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
               <AnimatePresence mode="popLayout">
                 {filteredProducts.map(product => (
@@ -184,13 +206,19 @@ export default function Shop() {
               </AnimatePresence>
             </div>
           ) : (
-            <div className="text-center py-20 bg-white rounded-sm">
-              <p className="text-gray-400 italic">No products found matching your criteria.</p>
+            <div className="text-center py-24 bg-white rounded-sm border border-dashed border-gray-200">
+              <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Search className="text-gray-300" size={32} />
+              </div>
+              <h3 className="font-serif text-xl mb-2">No matches found</h3>
+              <p className="text-gray-400 italic mb-8 max-w-xs mx-auto">
+                We couldn't find any products matching "{searchQuery}". Try adjusting your filters or search terms.
+              </p>
               <button 
-                onClick={() => { handleCategoryChange('All'); setPriceRange(5000); setSearchQuery(''); }} 
-                className="mt-4 text-brand-accent text-sm font-bold uppercase border-b border-brand-accent pb-0.5"
+                onClick={() => { handleCategoryChange('All'); setPriceRange(10000); setSearchQuery(''); }} 
+                className="text-brand-accent text-xs font-bold uppercase tracking-widest border-b-2 border-brand-accent pb-1 hover:text-brand-dark hover:border-brand-dark transition-all"
               >
-                Clear Search & Filters
+                Reset All Filters
               </button>
             </div>
           )}

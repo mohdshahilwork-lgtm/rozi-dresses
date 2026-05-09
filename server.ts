@@ -122,7 +122,104 @@ async function startServer() {
       rating: 4.0,
       reviewsCount: 20
     },
-    // ... more products can be added or fetched
+    {
+      id: '5',
+      name: 'Sky Blue Summer Dress',
+      price: 1499,
+      originalPrice: 1899,
+      discount: 21,
+      category: 'Casual Wear',
+      image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=100&w=2600&auto=format&fit=crop',
+      images: [
+        'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=100&w=2600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1445205170230-053b83016050?q=100&w=2600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?q=100&w=2600&auto=format&fit=crop'
+      ],
+      description: 'A breezy sky blue dress, perfect for summer vacations and casual outings.',
+      stock: 15,
+      rating: 4.4,
+      reviewsCount: 6
+    },
+    {
+      id: '6',
+      name: 'Midnight Velvet Dress',
+      price: 2999,
+      originalPrice: 3999,
+      discount: 25,
+      category: 'Party Wear',
+      image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=100&w=2600&auto=format&fit=crop',
+      images: [
+        'https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=100&w=2600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1518767763163-d6d32aa30724?q=100&w=2600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=100&w=2600&auto=format&fit=crop'
+      ],
+      description: 'Luxurious midnight velvet dress for special evenings. Soft texture and elegant fit.',
+      isLatest: true,
+      stock: 0,
+      rating: 4.9,
+      reviewsCount: 4
+    },
+    {
+      id: '7',
+      name: 'Women Red Party Dress',
+      price: 999,
+      originalPrice: 1499,
+      discount: 33,
+      category: 'Women',
+      image: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=100&w=2600&auto=format&fit=crop',
+      images: ['https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=100&w=2600&auto=format&fit=crop'],
+      description: 'Stylish red party wear dress, designed to make you stand out at any event.',
+      isLatest: true,
+      stock: 20,
+      rating: 4.6,
+      reviewsCount: 15
+    },
+    {
+      id: '8',
+      name: 'Women Casual Kurti',
+      price: 699,
+      originalPrice: 999,
+      discount: 30,
+      category: 'Women',
+      image: 'https://images.pexels.com/photos/994523/pexels-photo-994523.jpeg?auto=format&cs=tinysrgb&w=2400',
+      images: ['https://images.pexels.com/photos/994523/pexels-photo-994523.jpeg?auto=format&cs=tinysrgb&w=2400'],
+      description: 'Comfortable daily wear kurti with modern prints and breathable fabric.',
+      isLatest: true,
+      stock: 25,
+      rating: 4.3,
+      reviewsCount: 10
+    },
+    {
+      id: '9',
+      name: 'Men Stylish Shirt',
+      price: 899,
+      originalPrice: 1299,
+      discount: 31,
+      category: 'Men',
+      image: 'https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg?auto=format&cs=tinysrgb&w=2400',
+      images: ['https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg?auto=format&cs=tinysrgb&w=2400'],
+      description: 'Trendy casual shirt for men, perfect for both office and casual outings.',
+      isLatest: true,
+      stock: 15,
+      rating: 4.5,
+      reviewsCount: 8
+    },
+    {
+      id: '10',
+      name: 'Men Denim Jacket',
+      price: 1499,
+      originalPrice: 2499,
+      discount: 40,
+      category: 'Men',
+      image: 'https://images.unsplash.com/photo-1543076447-215ad9ba6923?q=100&w=2600&auto=format&fit=crop',
+      images: ['https://images.unsplash.com/photo-1543076447-215ad9ba6923?q=100&w=2600&auto=format&fit=crop'],
+      description: 'Premium denim jacket with a rugged look and comfortable fit.',
+      isFeatured: true,
+      isLatest: true,
+      stock: 12,
+      rating: 4.7,
+      reviewsCount: 5
+    }
   ];
 
   // PRODUCT MANAGEMENT
